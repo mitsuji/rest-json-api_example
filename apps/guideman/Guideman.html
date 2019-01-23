@@ -1,0 +1,849 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
+<html>
+
+<head>
+    <title>Guideman</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    
+    <style type="text/css">
+        body{
+            font-family     : Georgia;
+        }
+        
+        a{
+            color           : #BB3333;
+        }
+        
+        .header{
+            background      : #FDFDFD;
+            border          : solid 0.1em #000000;
+            border-bottom   : solid 0.5em #000000;
+            color           : #000000;
+            padding         : 2em 0.5em 0em 0.5em;
+            text-align      : right;
+            font-size       : 200%;
+            font-family     : "Bookman Old Style";
+        }
+        
+        .footer{
+            background      : #FDFDFD;
+            border          : solid 0.1em #000000;
+            border-top      : solid 0.5em #000000;
+            color           : #000000;
+            padding         : 0em 0.5em 2em 0.5em;
+            text-align      : right;
+            font-size       : 100%;
+        }
+        
+        div.index{
+        	float			: right;
+        	border			: double 6px #CCCCCC;
+        	background		: #FFFFFF;
+        	margin			: 0em 1em 1em 1em;
+        }
+        
+        h2.index{
+        	border-bottom	: solid 0.2em #000000;
+        	margin			: 0em;
+        	padding			: 1em 0em 0em 0em;
+        	text-align		: right;
+        }
+        
+        ul.index{
+        	line-height		: 1.8em;
+        	margin			: 0em 1em 0em 1.5em;
+        }
+        
+        dl.item{
+        }
+        
+        dt.item{
+            border-left     : solid 0.5em #CCCCCC;
+            border-bottom   : solid 0.1em #CCCCCC;
+            margin-bottom   : 0.5em;
+            font-size       : 250%;
+        }
+        
+        dd.item{
+            margin-bottom   : 3em;
+        }
+        
+        dl.item2{
+        }
+        
+        dt.item2{
+            border-bottom   : solid 1px #CCCCCC;
+            margin-bottom   : 0.5em;
+            font-weight     : bold;
+        }
+        
+        dd.item2{
+            margin-bottom   : 1em;
+        }
+        
+        .code{
+            white-space     : pre;
+            font-family     : monospace; 
+            border-left     : double 9px #CCCCCC; 
+            font-size       : 80%;
+            line-height     : 1em;
+        }
+        
+        .codecomment{
+        	font-size		: 80%;
+        }
+        
+        .attention{
+        	margin-left		: 2em;
+        }
+        
+        dl.reference{
+        }
+        
+        dt.reference{
+            text-decoration : underline;
+            font-size       : 150%;
+            font-weight     : bold;
+        }
+        
+        dd.reference{
+            border-left     : dashed 1px #333333;
+            padding         : 0em 0em 0em 1em;
+            line-height     : 1.3em;
+			margin-bottom	: 5em;
+        }
+        
+        dl.example{
+            margin          : 1em 3em 1em 1em;
+            padding         : 0.5em;
+            border          : solid 1px #CCCCCC;
+            background      : #F8F8F8;
+        }
+        
+        dt.example{
+            border-bottom   : solid 1px #CCCCCC;
+            margin-bottom   : 0.5em;
+            font-weight     : bold;
+        }
+        
+        dd.example{
+        }
+        
+    </style>
+    
+</head>
+
+<body>
+    <h1 class="header">Guideman</h1>
+
+
+
+	<div class="index">
+		<h2 class="index">INDEX</h2>
+		
+	    <ul class="index">
+	    <li><a href="#idGuideman">Guidemanとは？</a></li>
+	    <li><a href="#idEnvironment">動作環境</a></li>
+	    <li><a href="#idPackage">パッケージ内容</a></li>
+		<li><a href="#idAttention">注意事項</a></li>
+	    <li><a href="#idInstall">インストール方法</a></li>
+	    <li><a href="#idSetting">設定ファイルの書き方</a></li>
+	    <li><a href="#idReference">設定リファレンス</a></li>
+	    <li><a href="#idHistory">更新履歴</a></li>
+	    </ul>
+	</div>
+	
+	
+	
+    <dl class="item">
+    <dt class="item" id="idGuideman">Guidemanとは？</dt>
+    <dd class="item">
+        <p>
+            GuidemanはHTTPアクセスを操作するためのISAPI Filterです。<br />
+        </p>
+
+        <p>
+            以下のようなことが可能です。<br />
+        </p>
+        
+        <ul>
+        <li>"/abc/xyz.html" へのアクセスを "/dispatch.asp?p1=abc&p2=xyz" へのアクセスとして置き換える。</li>
+        <li>"/old/abc.html" へのアクセスを "/new/abc.html" へHTTPリダイレクトする。</li>
+        <li>"/member/" へ https でアクセスしてこなかった場合、httpsで来るようにHTTPリダイレクトする。</li>
+        <li>HTTPリダイレクトはステータスコード301,302などを指定。</li>
+        <li>など。。。</li>
+        </ul>
+    </dd>
+    
+    
+    
+    <dt class="item" id="idEnvironment">動作環境</dt>
+    <dd class="item">
+        IIS 5.0, 5.1, 6.0, 7.0, 7.5 and later
+    </dd>
+    
+    
+    
+    <dt class="item" id="idPackage">パッケージ内容</dt>
+    <dd class="item">
+        <dl class="item2">
+        <dt class="item2">Guideman.dll</dt>
+        <dd class="item2">
+            ISAPI Filter本体
+        </dd>
+        
+        <dt class="item2">Guideman.setting</dt>
+        <dd class="item2">
+            設定ファイル
+        </dd>
+        
+        </dl>
+    </dd>
+    
+    
+    
+    <dt class="item" id="idAttention">注意事項</dt>
+    <dd class="item">
+        <ol>
+        <li>本ソフトウェアの利用は良識の範囲内でお願い致します。</li>
+        <li>本ソフトウェアの利用による損害の保証はお受けできません。</li>
+        <li>本ソフトウェアの利用は楽しんで行っていただきますようお願い致します。</li>
+        </ol>
+    </dd>
+    
+    
+    
+    <dt class="item" id="idInstall">インストール方法</dt>
+    <dd class="item">
+        <ol>
+        <li>"Guideman.setting" を目的の設定に編集。</li>
+        <li>"Guideman.dll" を目的のWebサイトのISAPIフィルタに設定。</li>
+        </ol>
+    </dd>
+    
+    
+    
+    <dt class="item" id="idSetting">設定ファイルの書き方</dt>
+    <dd class="item">
+        <p>
+            設定ファイルはXMLで記述してください。<br />
+        </p>
+        
+        <dl class="item2">
+        <dt class="item2">例</dt>
+        <dd class="item2 code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;guideman&gt;
+    &lt;guidebook&gt;
+        &lt;guide url="/member/.*"&gt;
+            &lt;actionif sv="HTTPS" match="off"/&gt;
+            &lt;redirect location="https://%{HTTP_HOST}${0}"/&gt;
+        &lt;/guide&gt;
+        
+        &lt;guide url="/.*"&gt;
+            &lt;actionif sv="HTTPS" match="on"/&gt;
+            &lt;redirect location="http://%{HTTP_HOST}${0}"/&gt;
+        &lt;/guide&gt;
+        
+    &lt;/guidebook&gt;
+    
+    &lt;guidebook&gt;
+        &lt;guide url="/(.+)/(.+)\.html"&gt;
+            &lt;setheader name="url" value="/dispatch.asp?p1=${1}&amp;amp;p2=${2}"/&gt;
+        &lt;/guide&gt;
+        
+    &lt;/guidebook&gt;
+    
+&lt;/guideman&gt;
+        </dd>
+        
+        <dt class="item2">説明</dt>
+        <dd class="item2 codecomment">
+            <ul>
+            <li>"/member/" 配下へアクセスに反応し、HTTPSがoffだったらhttpsで来るようにリダイレクト。</li>
+            <li>"/" 配下へのアクセスに反応し、HTTPSがonだったらhttpで来るようにリダイレクト。</li>
+            <li>"/aaa/bbb.html" のようなアクセスに反応し、"dispatch.asp?p1=aaa&amp;p2=bbb" へのアクセスに置き換える。</li>
+            </ul>
+        </dd>
+        
+        </dl>
+
+    </dd>
+    
+    
+    
+    <dt class="item" id="idReference">設定リファレンス</dt>
+    <dd class="item">
+        <dl class="reference">
+        <dt class="reference">&lt;guideman/&gt;</dt>
+        <dd class="reference">
+            <p>
+                Guideman設定のルート要素。
+            </p>
+            
+            <dl class="item2">
+            <dt class="item2">属性</dt>
+            <dd class="item2">
+                <dl class="reference">
+                <dt class="reference">reloadkey</dt>
+                <dd class="reference">
+                    <p>
+                        設定ファイルをリロードする際のキー。<br />
+                        文字 '/' から始まる文字列を指定して下さい。<br />
+                        キーはばれないよう、複雑なものにして下さい。<br />
+                        キーを指定しない場合、もしくは空文字列の場合は設定ファイルのリロードはできません。<br />
+                    </p>
+                    
+                    <dl class="example">
+                    <dt class="example">例</dt>
+                    <dd class="example code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;guideman reloadkey="/soeu73nc70zzz"&gt;
+    ...
+&lt;/guideman&gt;
+                    </dd>
+                    
+                    <dt class="example">説明</dt>
+                    <dd class="example codecomment">
+                        設定ファイルを変更した際、<br />
+                        <span class="attention">http://yourhostname/soeu73nc70zzz</span><br/>
+                        にアクセスすることで設定をリロードできます。<br />
+                    </dd>
+                    
+                    </dl>
+                </dd>
+                
+                </dl>
+            </dd>
+            
+            <dt class="item2">子要素</dt>
+            <dd class="item2">
+                <ul>
+                <li>&lt;guidebook/&gt;</li>
+                </ul>
+            </dd>
+            
+            </dl>
+        </dd>
+        
+        <dt class="reference">&lt;guidebook/&gt;</dt>
+        <dd class="reference">
+            <p>
+                &lt;guide/&gt;のセット。<br />
+                &lt;guidebook/&gt;内の&lt;guide/&gt;は上から順に走査され、url がマッチした時点で走査を終了し、<br />
+                現在の&lt;guidebook/&gt;から抜けて次の&lt;guidebook/&gt;に入ります。<br />
+            </p>
+            
+            <dl class="item2">
+            <dt class="item2">属性</dt>
+            <dd class="item2">
+                [なし]
+            </dd>
+            
+            <dt class="item2">子要素</dt>
+            <dd class="item2">
+                <ul>
+                <li>&lt;guide/&gt;</li>
+                </ul>
+            </dd>
+            
+            </dl>
+        </dd>
+        
+        <dt class="reference">&lt;guide/&gt;</dt>
+        <dd class="reference">
+            <p>
+                反応する条件と反応した際の処理のセット。<br />
+                アクセスしてきたURLとurl(属性)がマッチした際にアクション(&lt;redirect/&gt;, &lt;setheader/&gt;)を実行します。<br />
+                その際、すべての&lt;actionif/&gt;が評価され、すべて True の場合のみアクションが実行されます。<br />
+            </p>
+            
+            <dl class="item2">
+            <dt class="item2">属性</dt>
+            <dd class="item2">
+                <dl class="reference">
+                <dt class="reference">url</dt>
+                <dd class="reference">
+                    <p>
+                        アクセスしてきたURLに反応したい正規表現。<br />
+                        正規表現はPerl互換(<a href="http://www.boost.org/libs/regex/doc/syntax_perl.html">Boost.Regex　Perl Regular Expression Syntax</a>)で記述して下さい。<br />
+                        正規表現にサブマッチを利用した場合にはアクションで置換に利用することができます。
+                    </p>
+                    
+                    <dl class="example">
+                    <dt class="example">例</dt>
+                    <dd class="example code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;guideman&gt;
+    &lt;guidebook&gt;
+        &lt;guide url="/(.+)/(.+)\.html"&gt;
+            &lt;setheader name="url" value="/dispatch.asp?p1=${1}&amp;amp;p2=${2}"/&gt;
+        &lt;/guide&gt;
+        
+    &lt;/guidebook&gt;
+    
+&lt;/guideman&gt;
+                    </dd>
+                    
+                    <dt class="example">説明</dt>
+                    <dd class="example codecomment">
+                        以下のようなアクセス、<br />
+                        <span class="attention">http://yourhostname/abc/xyz.html</span><br/>
+                        をすると、IISで内部的に<br />
+                        <span class="attention">/dispatch.asp?p1=abc&amp;amp;p2=xyz</span><br/>
+                        へアクセスしたことになります。<br />
+                    </dd>
+                    
+                    </dl>
+                </dd>
+                
+                <dt class="reference">or=&quot;or&quot;</dt>
+                <dd class="reference">
+                    <p>
+                        すべての &lt;actionif/&gt; の評価をORで行います。<br />
+                        指定しない場合はANDです。<br />
+                    </p>
+                    
+                    <dl class="example">
+                    <dt class="example">例</dt>
+                    <dd class="example code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;guideman&gt;
+    &lt;guidebook&gt;
+        &lt;guide url="/.*" or="or"&gt;
+            &lt;actionif sv="HTTP_USER_AGENT" match=".*Opera.*"/&gt;
+            &lt;actionif sv="HTTP_USER_AGENT" match=".*Firefox.*"/&gt;
+            &lt;setheader name="url" value="/pleaseIE.html"/&gt;
+        &lt;/guide&gt;
+        
+    &lt;/guidebook&gt;
+    
+&lt;/guideman&gt;
+                    </dd>
+                    
+                    <dt class="example">説明</dt>
+                    <dd class="example codecomment">
+                        ブラウザのユーザーエージェントがOperaかFirefoxの場合には、<br />
+                        <span class="attention">/pleaseIE.html</span><br/>
+                        へアクセスしたことになります。<br />
+                    </dd>
+                    
+                    </dl>
+                </dd>
+                
+                </dl>
+            </dd>
+            
+            <dt class="item2">子要素</dt>
+            <dd class="item2">
+                <ul>
+                <li>&lt;actionif/&gt;</li>
+                <li>&lt;redirect/&gt;</li>
+                <li>&lt;setheader/&gt;</li>
+                </ul>
+            </dd>
+            
+            </dl>
+        </dd>
+        
+        <dt class="reference">&lt;actionif/&gt;</dt>
+        <dd class="reference">
+            <p>
+                アクションを実行すべきかどうかの条件。<br />
+                &lt;actionif/&gt;が複数ある場合にはすべてが True の場合のみアクションが実行されます。<br />
+                ただし、&lt;guide/&gt;に or=&quot;or&quot; が指定されている場合にはどれか1つが True の場合にアクションが実行されます。<br />
+                例は &lt;redirect/&gt; の例をご覧下さい。<br />
+            </p>
+            
+            <dl class="item2">
+            <dt class="item2">属性</dt>
+            <dd class="item2">
+                <dl class="reference">
+                <dt class="reference">sv</dt>
+                <dd class="reference">
+                    <p>
+                        ServerVariable名。<br />
+                        以下のServerVariableが利用可能です。<br />
+                    </p>
+                    
+                    <dl>
+                    <dt>HTTPS</dt>
+                    <dd>
+                        "on", "off"
+                    </dd>
+                    
+                    <dt>LOCAL_ADDR</dt>
+                    <dd>
+                        "192.168.0.1", ... （サーバーのIPアドレス）
+                    </dd>
+                    
+                    <dt>REMOTE_ADDR</dt>
+                    <dd>
+                        "192.168.0.21", ... （クライアントのIPアドレス）
+                    </dd>
+                    
+                    <dt>SERVER_NAME</dt>
+                    <dd>
+                        "www.arudomain.jp", ...
+                    </dd>
+                    
+                    <dt>SERVER_PORT</dt>
+                    <dd>
+                        "80", "443", ...
+                    </dd>
+                    
+                    <dt>SERVER_PORT_SECURE</dt>
+                    <dd>
+                        "0", "1"
+                    </dd>
+                    
+                    <dt>SERVER_PROTOCOL</dt>
+                    <dd>
+                        "HTTP/1.1", ...
+                    </dd>
+                    
+                    <dt>HTTP_*</dt>
+                    <dd>
+                        クライアントが送ってきたHTTPヘッダー達。<br />
+                        一般的に以下が利用可能。<br />
+                        
+                        <ul>
+                        <li>HTTP_METHOD</li>
+                        <li>HTTP_URL</li>
+                        <li>HTTP_VERSION</li>
+                        <li>HTTP_ACCEPT</li>
+                        <li>HTTP_ACCEPT_LANGUAGE</li>
+                        <li>HTTP_CONNECTION</li>
+                        <li>HTTP_COOKIE</li>
+                        <li>HTTP_CONTENT_LENGTH</li>
+                        <li>HTTP_CONTENT_TYPE</li>
+                        <li>HTTP_HOST</li>
+                        <li>HTTP_USER_AGENT</li>
+                        </ul>
+                    </dd>
+                    
+                    </dl>
+                    
+                </dd>
+                
+                <dt class="reference">match</dt>
+                <dd class="reference">
+                    <p>
+                        ServerVariable値。<br />
+                        正規表現で記述します。<br />
+                    </p>
+                    
+                </dd>
+                
+                <dt class="reference">not=&quot;not&quot;</dt>
+                <dd class="reference">
+                    <p>
+                        match評価が False の時に条件が True とします。<br />
+                    </p>
+                    
+                </dd>
+                
+                </dl>
+            </dd>
+            
+            <dt class="item2">子要素</dt>
+            <dd class="item2">
+                [なし]
+            </dd>
+            
+            </dl>
+        </dd>
+        
+        <dt class="reference">&lt;redirect/&gt;</dt>
+        <dd class="reference">
+            <p>
+                リダイレクトアクション。<br />
+            </p>
+            
+            <dl class="item2">
+            <dt class="item2">属性</dt>
+            <dd class="item2">
+                <dl class="reference">
+                <dt class="reference">location</dt>
+                <dd class="reference">
+                    <p>
+                        リダイレクト先。<br />
+                        以下の置換が利用可能です。<br />
+                    </p>
+                    
+                    <!-- -->
+                    <dl>
+                    <dt>%{HTTP_HOST}</dt>
+                    <dd>
+                        アクセスしてきたホスト名
+                    </dd>
+                    
+                    <dt>${0}</dt>
+                    <dd>
+                        &lt;guide url/&gt; で反応したときの文字列全体。<br />
+                    </dd>
+                    
+                    <dt>${n}</dt>
+                    <dd>
+                        &lt;guide url/&gt; で反応したときのサブマッチn個目。<br />
+                    </dd>
+                    
+                    </dl>
+                    
+                    <!-- -->
+                    <dl class="example">
+                    <dt class="example">例</dt>
+                    <dd class="example code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;guideman&gt;
+    &lt;guidebook&gt;
+        &lt;guide url="/member/.*"&gt;
+            &lt;actionif sv="HTTPS" match="off"/&gt;
+            &lt;redirect location="https://%{HTTP_HOST}${0}"/&gt;
+        &lt;/guide&gt;
+        
+        &lt;guide url="/.*"&gt;
+            &lt;actionif sv="HTTPS" match="on"/&gt;
+            &lt;redirect location="http://%{HTTP_HOST}${0}"/&gt;
+        &lt;/guide&gt;
+        
+    &lt;/guidebook&gt;
+    
+&lt;/guideman&gt;
+                    </dd>
+                    
+                    <dt class="example">説明</dt>
+                    <dd class="example codecomment">
+                        以下のようなアクセス、<br />
+                        <span class="attention">http://yourhostname/member/</span><br/>
+                        をすると、<br />
+                        <span class="attention">https://yourhostname/member/</span><br/>
+                        へリダイレクトされます。<br />
+                        <br />
+                        以下のようなアクセス、<br />
+                        <span class="attention">https://yourhostname/</span><br/>
+                        をすると、<br />
+                        <span class="attention">http://yourhostname/</span><br/>
+                        へリダイレクトされます。<br />
+                    </dd>
+                    
+                    </dl>
+                    
+                </dd>
+                
+                <dt class="reference">status</dt>
+                <dd class="reference">
+                    <p>
+                        レスポンスステータスを指定します。<br />
+                        指定しない場合は既定の "302 Found" が返されます。<br />
+                    </p>
+                    
+                    <dl class="example">
+                    <dt class="example">例</dt>
+                    <dd class="example code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;guideman&gt;
+    &lt;guidebook&gt;
+        &lt;guide url="/oldcontents/(.*)"&gt;
+            &lt;redirect location="/newcontents/${1}" status="301 Moved Permanently"/&gt;
+        &lt;/guide&gt;
+        
+    &lt;/guidebook&gt;
+    
+&lt;/guideman&gt;
+                    </dd>
+                    
+                    </dl>
+                    
+                </dd>
+                
+                </dl>
+            </dd>
+            
+            <dt class="item2">子要素</dt>
+            <dd class="item2">
+                [なし]
+            </dd>
+            
+            </dl>
+        </dd>
+        
+        <dt class="reference">&lt;setheader/&gt;</dt>
+        <dd class="reference">
+            <p>
+                ヘッダーセットアクション。<br />
+                クライアントが送信してきたHTTPヘッダーを変更、または追加することができます。<br />
+            </p>
+            
+            <dl class="example">
+            <dt class="example">例</dt>
+            <dd class="example code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;guideman&gt;
+    &lt;guidebook&gt;
+        &lt;guide url="/(.+)/(.+)\.html"&gt;
+            &lt;setheader name="url" value="/dispatch.asp?p1=${1}&amp;amp;p2=${2}"/&gt;
+            &lt;setheader name="x-guideman-log-target:" value="${0}"/&gt;
+        &lt;/guide&gt;
+        
+    &lt;/guidebook&gt;
+    
+&lt;/guideman&gt;
+            </dd>
+            
+            <dt class="example">説明</dt>
+            <dd class="example codecomment">
+                以下のようなアクセス、<br />
+                <span class="attention">http://yourhostname/aaa/bbb.html</span><br/>
+                をすると、内部的に<br />
+                <span class="attention">/dispatch.asp?p1=aaa&amp;p2=bbb</span><br/>
+                へのアクセスに置き換えられます。<br />
+                <br />
+                その際、IISのログに元のURLが記録されます。<br />
+            </dd>
+            
+            </dl>
+            
+            <dl class="item2">
+            <dt class="item2">属性</dt>
+            <dd class="item2">
+                <dl class="reference">
+                <dt class="reference">name</dt>
+                <dd class="reference">
+                    <p>
+                        変更、または追加するヘッダー名。<br />
+                        以下のヘッダー名が利用可能です。<br />
+                    </p>
+                    
+                    <dl>
+                    <dt>url</dt>
+                    <dd>
+                        "/aaa/bbb.html" など、アクセスURL。
+                    </dd>
+                    
+                    <dt>x-guideman-log-target:</dt>
+                    <dd>
+                        アクセスURLを変更した場合に、変更前のURLをログに残したい場合にはこれをセットしてください。<br />
+                        必ず名前の最後に ':' を付ける必要があります。<br />
+                    </dd>
+                    
+                    <dt>{your-custom-header}:</dt>
+                    <dd>
+                        クライアントが送ってきたことにするお好きなヘッダーを指定できます。<br />
+                        必ず名前の最後に ':' を付ける必要があります。<br />
+                        ここでセットしたヘッダー値はCGIなどのプログラムから、<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;"HTTP_YOUR_CUSTOM_HEADER"<br />
+                        で取得できます。<br />
+                    </dd>
+                    
+                    </dl>
+                    
+                </dd>
+                
+                <dt class="reference">value</dt>
+                <dd class="reference">
+                    <p>
+                        変更、または追加するヘッダー値。<br />
+                        以下の置換が利用可能です。<br />
+                    </p>
+                    
+                    <!-- -->
+                    <dl>
+                    <dt>${0}</dt>
+                    <dd>
+                        &lt;guide url/&gt; で反応したときの文字列全体。<br />
+                    </dd>
+                    
+                    <dt>${n}</dt>
+                    <dd>
+                        &lt;guide url/&gt; で反応したときのサブマッチn個目。<br />
+                    </dd>
+                    
+                    </dl>
+                </dd>
+                
+                </dl>
+            </dd>
+            
+            <dt class="item2">子要素</dt>
+            <dd class="item2">
+                [なし]
+            </dd>
+            
+            </dl>
+        </dd>
+        
+        </dl>
+        
+    </dd>
+    
+    
+    
+    <dt class="item" id="idHistory">更新履歴</dt>
+    <dd class="item">
+        <dl class="item2">
+        <dt class="item2">2007/09/14</dt>
+        <dd class="item2">
+            <ul>
+            <li>Version: 1.0.0.0</li>
+            </ul>
+        </dd>
+        
+        <dt class="item2">2007/09/21</dt>
+        <dd class="item2">
+            <ul>
+            <li>Version: 1.1.0.0</li>
+            <li>&lt;guide or=&quot;or&quot;/&gt; の機能追加。</li>
+            <li>&lt;actionif not=&quot;not&quot;/&gt; の機能追加。</li>
+            </ul>
+        </dd>
+        
+        <dt class="item2">2008/10/21</dt>
+        <dd class="item2">
+            <ul>
+            <li>Version: 1.1.1.0</li>
+            <li>redirect時に無断でConnection Closeしていた問題対処</li>
+            </ul>
+        </dd>
+        
+        <dt class="item2">2009/05/29</dt>
+        <dd class="item2">
+            <ul>
+            <li>Version: 1.2.1.0</li>
+            <li>redirect時ステータスコード指定機能追加(301, 302, ...)</li>
+            </ul>
+        </dd>
+        
+        <dt class="item2">2009/12/04</dt>
+        <dd class="item2">
+            <ul>
+            <li>Version: 1.3.1.0</li>
+            <li>設定ファイルロードライブラリを新しいものに入れ替え</li>
+            </ul>
+        </dd>
+        
+        <dt class="item2">2010/03/31</dt>
+        <dd class="item2">
+            <ul>
+            <li>Version: 1.3.2.0</li>
+            <li>x64対応</li>
+            </ul>
+        </dd>
+        
+        </dl>
+    </dd>
+    
+    </dl>
+    
+    
+    
+    <div class="footer">
+        <p>
+            (C) <a href="http://na-s.jp/">Natural Style</a>, 2010/03/31 ___//
+        </p>
+        
+    </div>
+</body>
+
+</html>

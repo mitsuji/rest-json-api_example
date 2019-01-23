@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<guideman reloadkey="/abcd1234">
+  
+  <!-- GET -->
+  <guidebook>
+    <guide url="^(/v1/todolist/todo/)(.+)(\?(.*))?$">
+      <actionif sv="HTTP_METHOD" match="GET" />
+      <setheader name="url" value="/asp/@.asp${3}"/>
+      <setheader name="x-guideman-log-target:" value="${1}${2}${3}" />
+      <setheader name="mediated-command:" value="GetTodo" />
+      <setheader name="mediated-param:" value="${2}" />
+    </guide>
+    <guide url="^(/v1/todolist/todo)(\?(.*))?$">
+      <actionif sv="HTTP_METHOD" match="GET" />
+      <setheader name="url" value="/asp/@.asp${2}"/>
+      <setheader name="x-guideman-log-target:" value="${1}${2}" />
+      <setheader name="mediated-command:" value="GetTodoList" />
+    </guide>
+  </guidebook>
+
+  <!-- POST -->
+  <guidebook>
+    <guide url="^(/v1/todolist/todo)(\?(.*))?$">
+      <actionif sv="HTTP_METHOD" match="POST" />
+      <setheader name="url" value="/asp/@.asp${2}"/>
+      <setheader name="x-guideman-log-target:" value="${1}${2}" />
+      <setheader name="mediated-command:" value="PostTodo" />
+    </guide>
+  </guidebook>
+  
+
+  <!-- PUT -->
+  <guidebook>
+    <guide url="^(/v1/todolist/todo/)(.+)(\?(.*))?$">
+      <actionif sv="HTTP_METHOD" match="PUT" />
+      <setheader name="url" value="/asp/@.asp${3}"/>
+      <setheader name="x-guideman-log-target:" value="${1}${2}${3}" />
+      <setheader name="mediated-command:" value="PutTodo" />
+      <setheader name="mediated-param:" value="${2}" />
+    </guide>
+  </guidebook>
+
+  <!-- DELETE -->
+  <guidebook>
+    <guide url="^(/v1/todolist/todo/)(.+)(\?(.*))?$">
+      <actionif sv="HTTP_METHOD" match="DELETE" />
+      <setheader name="url" value="/asp/@.asp${3}"/>
+      <setheader name="x-guideman-log-target:" value="${1}${2}${3}" />
+      <setheader name="mediated-command:" value="DeleteTodo" />
+      <setheader name="mediated-param:" value="${2}" />
+    </guide>
+  </guidebook>
+
+
+</guideman>
